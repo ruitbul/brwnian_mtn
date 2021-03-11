@@ -1,52 +1,55 @@
+let birds = [];
+//let size = 1;
 
-let img; 
-let speed = 0.2;
-
-  
 function preload() { 
   img = loadImage("mtn.jpg"); 
 } 
-  
-function setup() { 
+
+function setup() {
   createCanvas(700, 900); 
-  frameRate(15);
-  
-  image(img, 20, 40, 700, 900); 
-    
-    //noLoop();
-
-
-} 
+  frameRate(30);
+  for (let i = 0; i < 8; i++) {
+    birds.push(new Motion());
+  }
+}
 
 function draw() {
- 
-    // let x = width/2;
-    // let y = height/2;
-  
-  startBrownian(132, 187);
-  startBrownian.move();
-  startBrownian(150, 250);
-  startBrownian(523, 135);
-  startBrownian(543, 305);
-
-    print("X: "+mouseX, 0, height/4);
-     print("Y: "+mouseY, 0, height/2);
+  image(img, 20, 40, 700, 900);
+  for (let i = 0; i < birds.length; i++) {
+    birds[i].move();
+    birds[i].display();
+  }
 }
-function startBrownian(x,y){
-  noFill();
+
+// Jitter class
+class Motion {
+  constructor() {
+    this.x = random(width);
+    this.y = random(height);
+    this.diameter = random(10, 30);
+    this.speed = 1;
+  }
+
+  move() {
+    this.x += random(-this.speed, this.speed);
+    this.y += random(-this.speed, this.speed);
+  }
+
+  display() {
+    noFill();
     stroke(255, 151, 112);
     beginShape();
     for (let i=0; i<1500; i++) {
       
       
-      vertex(x, y);
+      vertex(this.x, this.y);
       
       
 
       
-      x += random(-speed, speed);
-      y += random(-speed, speed);
+      this.x += random(-.5, .5);
+      this.y += random(-.5, .5);
     }
     endShape();
+  }
 }
-
