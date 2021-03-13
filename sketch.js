@@ -10,12 +10,16 @@ let timer2 = 0;
 
 let mass = 0.6;
 
+let song;
+
 function preload() { 
+  song = loadSound("birds.wav");
   img = loadImage("mtn.jpg"); 
 } 
 
 function setup() {
-  createCanvas(600, 700); 
+  createCanvas(600, 700);
+  song.loop(); 
 
   // x = random(width);
   // y = random(height);
