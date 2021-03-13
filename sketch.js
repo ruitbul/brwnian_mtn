@@ -6,6 +6,8 @@ let y;
 
 let timer = 0;
 
+let timer2 = 0;
+
 let mass = 0.6;
 
 function preload() { 
@@ -55,6 +57,10 @@ class Motion {
       timer ++;
       }
 
+      if(timer2 < 4000){
+        timer2 ++;
+      }
+
       let newX = map(timer, 0, 2000, this.x, width/2 + random(20)); //+ random(10));
       let newY = map(timer, 0, 2000, this.y, height/2 - 100 + random(20));//+random(10));
     
@@ -64,11 +70,9 @@ class Motion {
       
       vertex(newX, newY);
       
-      // if(mass > 0.6){
-      // mass--;
-      // }
+      
 
-      mass = map(timer, 0, 2000, 0.6, 0.1);
+      mass = map(timer2, 0, 4000, 0.6, 0.001);
       newX += random(-mass, mass);
       newY += random(-mass, mass);
     }
