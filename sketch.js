@@ -6,6 +6,8 @@ let y;
 
 let timer = 0;
 
+let mass = 0.6;
+
 function preload() { 
   img = loadImage("mtn.jpg"); 
 } 
@@ -49,12 +51,12 @@ class Motion {
     noFill();
     stroke(255, 151, 112);
     
-    if(timer < 3000){
+    if(timer < 2000){
       timer ++;
       }
 
-      let newX = map(timer, 0, 3000, this.x, width/2+ random(20)); //+ random(10));
-      let newY = map(timer, 0, 3000, this.y, height/2 + random(20));//+random(10));
+      let newX = map(timer, 0, 2000, this.x, width/2 + random(20)); //+ random(10));
+      let newY = map(timer, 0, 2000, this.y, height/2 - 100 + random(20));//+random(10));
     
     beginShape();
     for (let i=0; i<1500; i++) {
@@ -62,11 +64,13 @@ class Motion {
       
       vertex(newX, newY);
       
-      
+      // if(mass > 0.6){
+      // mass--;
+      // }
 
-      
-      newX += random(-.5, .5);
-      newY += random(-.5, .5);
+      mass = map(timer, 0, 2000, 0.6, 0.1);
+      newX += random(-mass, mass);
+      newY += random(-mass, mass);
     }
     endShape();
   }
