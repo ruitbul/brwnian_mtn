@@ -12,6 +12,8 @@ let mass = 0.6;
 
 let song;
 
+let volume;
+
 function preload() { 
   song = loadSound("birds.wav");
   img = loadImage("mtn.jpg"); 
@@ -19,7 +21,8 @@ function preload() {
 
 function setup() {
   createCanvas(600, 700);
-  song.loop(); 
+  song.play(); 
+  //slider = createSlider(1, 45, 1.0, -1.0);
 
   // x = random(width);
   // y = random(height);
@@ -31,6 +34,8 @@ function setup() {
 
 function draw() {
   image(img, 0, 0, 600, 700);
+  volume = map(mass, 0.6, 0, 1, 0);
+  song.setVolume(volume); 
   for (let i = 0; i < birds.length; i++) {
     birds[i].move();
     birds[i].display();
@@ -61,7 +66,7 @@ class Motion {
       timer ++;
       }
 
-      if(timer2 < 4000){
+      if(timer2 < 2500){
         timer2 ++;
       }
 
@@ -76,7 +81,7 @@ class Motion {
       
       
 
-      mass = map(timer2, 0, 4000, 0.6, 0.001);
+      mass = map(timer2, 0, 2500, 0.6, 0.001);
       newX += random(-mass, mass);
       newY += random(-mass, mass);
     }
